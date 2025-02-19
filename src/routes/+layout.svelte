@@ -12,8 +12,6 @@
 	} from '$lib/store/initialLoaderStore';
 	import Loader from '$lib/components/loader/Loader.svelte';
 	import { page } from '$app/stores';
-	import NavigationMenu from '$lib/components/navigation/NavigationMenu.svelte';
-	import Breadcrumb from '$lib/components/navigation/Breadcrumb.svelte';
 
 	let { children } = $props();
 
@@ -45,10 +43,6 @@
 		<ModeWatcher />
 
 		<div class="container">
-			<div class="iconeNav flex justify-end place-items-center px-5 py-2">
-				<NavigationMenu />
-				<Breadcrumb />
-			</div>
 			<SmoothScrollBar>
 				<main class="mainLayout">
 					{@render children()}
