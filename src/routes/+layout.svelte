@@ -61,16 +61,7 @@
 		max-width: none;
 	}
 
-	.iconeNav {
-		position: absolute;
-		z-index: 100;
-		background-color: rgba(0, 0, 0, 0.75);
-		border-top-left-radius: 5px;
-		left: 0%;
-		bottom: 0px;
-	}
-
 	.wappper {
-		background: linear-gradient(to bottom, #23064f07, #ff680a05) !important;
+		background: url('img/bg.png');
 	}
 </style>
