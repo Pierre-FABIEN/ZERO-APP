@@ -1,32 +1,29 @@
 <script lang="ts">
-	import '@fontsource-variable/oxanium';
-	import '@fontsource/tomorrow';
-	import '@fontsource/barlow';
 	import '@fontsource-variable/advent-pro';
+	import Typewriter from 'typewriter-effect/dist/core';
 
-	import type { PageData } from './$types';
-
-	let text = $state('');
-	let index = $state(0);
-
-	const phrase = 'Hello ZERO';
-	const speed = 100; // vitesse en ms
+	let h1Element: HTMLHeadingElement | null = null;
 
 	$effect(() => {
-		if (index < phrase.length) {
-			setTimeout(() => {
-				text += phrase[index];
-				index++;
-			}, speed);
+		if (h1Element) {
+			new Typewriter(h1Element, {
+				loop: false,
+				delay: 300,
+				cursor: '|'
+			})
+				.typeString('Hello ZERO')
+				.start();
 		}
 	});
 </script>
 
 <div class="w-screen h-screen ccc">
 	<section class="cyberpunk black both">
-		<h1 class="cyberpunk glitched">{text}<span class="cursor">|</span></h1>
+		<h1 bind:this={h1Element} class="cyberpunk glitched"></h1>
 	</section>
-	<button class="button cyberpunk blue">Continue</button>
+	<a href="/application">
+		<button class="button cyberpunk blue">Continue</button>
+	</a>
 </div>
 
 <style>
