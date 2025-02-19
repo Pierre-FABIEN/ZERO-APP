@@ -1,4 +1,9 @@
 <script lang="ts">
+	import '@fontsource-variable/oxanium';
+	import '@fontsource/tomorrow';
+	import '@fontsource/barlow';
+	import '@fontsource-variable/advent-pro';
+
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
