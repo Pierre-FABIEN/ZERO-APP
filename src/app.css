@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--background: #faf4f0;
+		--foreground: #04031d;
+		--card: #f0e3d8;
+		--card-foreground: #291a15;
+		--popover: #faf4f0;
+		--popover-foreground: #faf4f0;
+		--primary: #fd4000;
+		--primary-foreground: #ffffff;
+		--secondary: #d8c2b8;
+		--secondary-foreground: #000000;
+		--muted: #e0d7cc;
+		--muted-foreground: #806e59;
+		--accent: #e8dbcc;
+		--accent-foreground: #291a15;
+		--destructive: #fd4000;
+		--destructive-foreground: #e8e3e6;
+		--border: #fd4000;
+		--input: #fd4000;
+		--ring: #fd4000;
+		--radius: 0.5rem;
+	}
+	.dark {
+		--background: #04031d;
+		--foreground: #e0d7cc;
+		--card: #04031d;
+		--card-foreground: #e0d7cc;
+		--popover: #1f1a35;
+		--popover-foreground: #e0d7cc;
+		--primary: #fd4000;
+		--primary-foreground: #ffffff;
+		--secondary: #271b0b;
+		--secondary-foreground: #ffffff;
+		--muted: #332019;
+		--muted-foreground: #ccbbaa;
+		--accent: #332019;
+		--accent-foreground: #e0d7cc;
+		--destructive: #fd4000;
+		--destructive-foreground: #e0d7cc;
+		--border: #fd4000;
+		--input: #fd4000;
+		--ring: #ff8080;
+		--radius: 0.5rem;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}
+
+
+.scrollbar-thumb {
+	background: #fd4000 !important;
+}
+
+.scrollbar-track {
+	background: transparent !important;
+}
