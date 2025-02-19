@@ -2,10 +2,18 @@
 	import gsap from 'gsap';
 	import { tick } from 'svelte';
 	import { get } from 'svelte/store';
-	import { setDomLoaded, setFirstLoadComplete, loadingStates } from '$store/initialLoaderStore';
+	import {
+		loadingStates,
+		setDomLoaded,
+		setFirstLoadComplete,
+		setEnableAudio
+	} from '$store/initialLoaderStore';
 
 	let initalLoader: HTMLElement;
 	let observer: IntersectionObserver;
+
+	// We will show the "Continue" button after all states are true
+	let showContinue = $state(false);
 
 	$effect(() => {
 		tick().then(() => {
@@ -23,6 +31,7 @@
 			(entries) => {
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
+						// The loader is visible => we mark domLoaded
 						setDomLoaded(true);
 						animateIn();
 						observer.unobserve(initalLoader);
@@ -52,12 +61,24 @@
 
 	function checkLoadingComplete() {
 		const currentLoadingStates = get(loadingStates);
-		if (Object.values(currentLoadingStates).every((state) => state === true)) {
-			animateOut();
+
+		// Déstructurer seulement les 3 propriétés nécessaires
+		const { firstOpen, domLoaded, ressourceToValide } = currentLoadingStates;
+
+		if (firstOpen && domLoaded && ressourceToValide) {
+			showContinue = true;
 		} else {
-			// Réessaye dans 500 ms
+			// Réessaye dans 200 ms
 			setTimeout(checkLoadingComplete, 200);
 		}
+	}
+
+	function onClickContinue() {
+		// Enable the audio from the store
+		setEnableAudio(true);
+
+		// Animate the loader out
+		animateOut();
 	}
 
 	function animateOut() {
@@ -69,6 +90,7 @@
 			stagger: 0.1,
 			ease: 'power2.in',
 			onComplete: () => {
+				// Once animation ends, mark the first load as complete
 				setFirstLoadComplete(true);
 			}
 		});
@@ -76,9 +98,15 @@
 </script>
 
 <div class="initalLoader flex justify-center items-center" bind:this={initalLoader}>
+	<!-- Animated Letters -->
 	{#each Array.from('Bienvenue') as letter, i (letter + i)}
 		<span class="letter">{letter}</span>
 	{/each}
+
+	<!-- The "Continue" button, shown only after all states are true -->
+	{#if showContinue}
+		<button class="continue-btn" onclick={onClickContinue}> Start </button>
+	{/if}
 </div>
 
 <style lang="scss">
@@ -94,5 +122,25 @@
 		width: 100vw;
 		height: 100vh;
 		color: white;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.continue-btn {
+		margin-top: 2rem;
+		background-color: #000;
+		color: #fff;
+		padding: 1rem 2rem;
+		border: none;
+		border-radius: 5px;
+		font-size: 1.2rem;
+		cursor: pointer;
+		transition: background 0.3s;
+
+		&:hover {
+			background-color: #222;
+		}
 	}
 </style>

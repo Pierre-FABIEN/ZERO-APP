@@ -12,7 +12,9 @@
 				delay: 100,
 				cursor: '|'
 			})
-				.typeString('Hello ZERO')
+				.typeString(
+					"This is my last chance to achieve my dream. If I don't get it, I'll be lost in Liberty City."
+				)
 				.start();
 		}
 	});
@@ -26,7 +28,7 @@
 	<button
 		class="button cyberpunk blue"
 		onclick={() => {
-			goto('/my-application');
+			goto('/exemple');
 		}}>Continue</button
 	>
 </div>

@@ -1,10 +1,12 @@
+// initialLoaderStore.ts
 import { writable } from 'svelte/store';
 
 // États de chargement individuels
 export const loadingStates = writable({
 	firstOpen: false,
 	domLoaded: false,
-	ressourceToValide: false
+	ressourceToValide: false,
+	enableAudio: false // <--- ON AJOUTE ICI
 });
 
 // Store séparé pour firstLoadComplete
@@ -33,6 +35,14 @@ export function setRessourceToValide(value: boolean) {
 	loadingStates.update((states) => {
 		if (!states) return states;
 		return { ...states, ressourceToValide: value };
+	});
+}
+
+// --- NOUVELLE FONCTION POUR ACTIVER L'AUDIO ---
+export function setEnableAudio(value: boolean) {
+	loadingStates.update((states) => {
+		if (!states) return states;
+		return { ...states, enableAudio: value };
 	});
 }
 

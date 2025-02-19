@@ -12,7 +12,7 @@
 				delay: 100,
 				cursor: '|'
 			})
-				.typeString('Hello ZERO')
+				.typeString('This is my application for your Job')
 				.start();
 		}
 	});
@@ -26,12 +26,12 @@
 	<button
 		class="button cyberpunk blue"
 		onclick={() => {
-			goto('/my-application');
+			goto('/last-chance');
 		}}>Continue</button
 	>
 </div>
 
-<style>
+<style lang="scss">
 	.cursor {
 		animation: blink 1s infinite;
 	}
