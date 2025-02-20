@@ -6,6 +6,22 @@
 	let h1Element: HTMLHeadingElement | null = null;
 	let audioElement: HTMLAudioElement | null = null;
 
+	// Chargement de l'audio pour le hover du bouton
+	let ContactMeAudio: HTMLAudioElement | null = null;
+	$effect(() => {
+		ContactMeAudio = new Audio('/audio/voice/ContactMe.wav');
+		ContactMeAudio.preload = 'auto';
+		ContactMeAudio.volume = 0.8;
+	});
+
+	// Jouer "HelloZero" au hover du bouton
+	function playContactMeAudio() {
+		if (ContactMeAudio) {
+			ContactMeAudio.currentTime = 0;
+			ContactMeAudio.play().catch((err) => console.error('Erreur de lecture audio:', err));
+		}
+	}
+
 	$effect(() => {
 		if (h1Element) {
 			new Typewriter(h1Element, {
@@ -13,26 +29,10 @@
 				delay: 100,
 				cursor: '|'
 			})
-				.typeString('This is my application for your Job')
+				.typeString('Please, contact me ! pierre.fabien.dev@gmail.com')
 				.start();
 		}
 	});
-
-	// Chargement de l'audio pour le hover du bouton
-	let ApplicationAudio: HTMLAudioElement | null = null;
-	$effect(() => {
-		ApplicationAudio = new Audio('/audio/voice/Application.wav');
-		ApplicationAudio.preload = 'auto';
-		ApplicationAudio.volume = 0.8;
-	});
-
-	// Jouer "HelloZero" au hover du bouton
-	function playApplicationAudio() {
-		if (ApplicationAudio) {
-			ApplicationAudio.currentTime = 0;
-			ApplicationAudio.play().catch((err) => console.error('Erreur de lecture audio:', err));
-		}
-	}
 
 	// Chargement de l’audio une seule fois
 	$effect(() => {
@@ -53,17 +53,12 @@
 <div class="w-screen h-screen ccc">
 	<section class="cyberpunk black both">
 		<hr class="cyberpunk glitched" />
-		<h2 bind:this={h1Element} class="cyberpunk glitched"></h2>
+		<h3 bind:this={h1Element} class="cyberpunk glitched"></h3>
 	</section>
 
-	<button
-		class="button cyberpunk blue"
-		onmouseenter={playApplicationAudio}
-		onclick={() => {
-			playHoverSound();
-			goto('/last-chance');
-		}}>Continue</button
-	>
+	<a href="mailto:pierre.fabien.dev@gmail.com">
+		<button class="button cyberpunk blue" onmouseenter={playContactMeAudio}> Contact </button>
+	</a>
 </div>
 
 <style lang="scss">
@@ -77,7 +72,7 @@
 		}
 	}
 
-	h2 {
+	h3 {
 		width: 320px;
 		text-align: center;
 		span {

@@ -74,11 +74,26 @@
 	}
 
 	function onClickContinue() {
-		// Enable the audio from the store
+		// Activer l’audio
 		setEnableAudio(true);
 
-		// Animate the loader out
+		// Passer en plein écran
+		toggleFullScreen();
+
+		// Animer la disparition du loader
 		animateOut();
+	}
+
+	function toggleFullScreen() {
+		if (!document.fullscreenElement) {
+			// Entrer en plein écran
+			document.documentElement.requestFullscreen().catch((err) => {
+				console.error(`Erreur en activant le plein écran: ${err.message}`);
+			});
+		} else {
+			// Quitter le plein écran si déjà actif (optionnel)
+			document.exitFullscreen();
+		}
 	}
 
 	function animateOut() {
