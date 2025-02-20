@@ -114,9 +114,11 @@
 
 <div class="initalLoader flex justify-center items-center" bind:this={initalLoader}>
 	<!-- Animated Letters -->
-	{#each Array.from('Bienvenue') as letter, i (letter + i)}
-		<span class="letter">{letter}</span>
-	{/each}
+	<div class="rcc">
+		{#each Array.from('Welcome') as letter, i (letter + i)}
+			<span class="letter">{letter}</span>
+		{/each}
+	</div>
 
 	<!-- The "Continue" button, shown only after all states are true -->
 	{#if showContinue}
