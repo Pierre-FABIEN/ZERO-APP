@@ -187,7 +187,7 @@
 		max-width: none;
 	}
 	.wappper {
-		background: url('img/bg.png');
+		background: url('/img/bg.png');
 	}
 
 	.canva {
