@@ -29,7 +29,9 @@
 				delay: 100,
 				cursor: '|'
 			})
-				.typeString('Please, contact me ! pierre.fabien.dev@gmail.com')
+				.typeString(
+					'Please, contact me ! pierre.fabien.dev@gmail.com <br> <br> Audio: Pierre FABIEN <br> CSS: Gwannon <br> Skull: free Model'
+				)
 				.start();
 		}
 	});
